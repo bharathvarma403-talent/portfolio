@@ -1,10 +1,9 @@
 export interface SkillItem {
   name: string;
-  category: 'languages' | 'development' | 'tools' | 'strengths' | 'technologies' | 'soft';
-  subLabel?: string;
-  level?: string;
-  description?: string;
-  color?: string;
+  category: 'languages' | 'technologies' | 'tools' | 'soft';
+  level: string;
+  description: string;
+  color: string;
 }
 
 export interface ProjectDetail {
@@ -47,11 +46,14 @@ export interface TrainingItem {
 }
 
 export interface CertificateItem {
+  id: string;
   title: string;
-  issuer: string;
+  issuer: 'NxtWave' | 'Infosys';
   issueDate: string;
   description: string;
   skillsCovered: string[];
+  imageUrl: string;
+  verificationUrl?: string;
 }
 
 export interface AchievementItem {
@@ -78,43 +80,34 @@ export const portfolioData = {
       email: 'mailto:bharathvarma403@gmail.com',
     },
     profilePhoto: '/assets/profile.jpg',
-    resumeUrl: '/assets/Pavan_Bharath_Varma_CV.pdf',
-    resumeDocxUrl: '/assets/Pavan_Bharath_Varma_CV.docx',
+    resumeUrl: '/assets/Pavan_Bharath_Varma_CV.docx',
   },
 
   skills: {
     languages: [
-      { name: 'Python', category: 'languages', subLabel: 'AI / ML', color: '#38bdf8' },
-      { name: 'JavaScript', category: 'languages', subLabel: 'Full-Stack / Web', color: '#f59e0b' },
-      { name: 'C', category: 'languages', subLabel: 'Systems', color: '#94a3b8' },
-      { name: 'C++', category: 'languages', subLabel: 'Algorithms / OOP', color: '#06b6d4' },
+      { name: 'JavaScript', category: 'languages', level: 'ES6+ & Full-Stack Logic', description: 'Asynchronous event loop, modern ES6+ paradigms, DOM architecture, and REST API integration.', color: '#f59e0b' },
+      { name: 'C', category: 'languages', level: 'System Fundamentals', description: 'Pointers, memory management, and core computational structures.', color: '#64748b' },
+      { name: 'C++', category: 'languages', level: 'Algorithms & STL', description: 'Standard Template Library (STL), algorithmic optimization, and computational performance.', color: '#06b6d4' },
+      { name: 'Python', category: 'languages', level: 'Data & Scripting', description: 'Data structures, scripting, logic automation, and foundational data analytics.', color: '#38bdf8' },
     ] as SkillItem[],
 
-    development: [
-      { name: 'React', category: 'development', subLabel: 'Frontend', color: '#06b6d4' },
-      { name: 'Node.js', category: 'development', subLabel: 'Backend Runtime', color: '#10b981' },
-      { name: 'HTML5', category: 'development', subLabel: 'Semantic Web', color: '#f97316' },
-      { name: 'CSS3', category: 'development', subLabel: 'Modern Styling', color: '#38bdf8' },
-      { name: 'Bootstrap', category: 'development', subLabel: 'Responsive Grid', color: '#a855f7' },
-      { name: 'Tailwind CSS', category: 'development', subLabel: 'Utility-First UI', color: '#38bdf8' },
+    technologies: [
+      { name: 'HTML', category: 'technologies', level: 'Semantic Structure', description: 'Accessible markup, clean DOM hierarchy, and modern web standards.', color: '#f97316' },
+      { name: 'CSS', category: 'technologies', level: 'Responsive Styling & Layouts', description: 'Flexbox, CSS Grid, media queries, keyframe animations, and custom styling systems.', color: '#38bdf8' },
+      { name: 'Bootstrap', category: 'technologies', level: 'Responsive UI Prototyping', description: 'Responsive grid architecture, mobile-first navigation, and accessible components.', color: '#a855f7' },
     ] as SkillItem[],
 
     tools: [
-      { name: 'MySQL', category: 'tools', subLabel: 'Relational DB', color: '#0284c7' },
-      { name: 'MongoDB', category: 'tools', subLabel: 'NoSQL DB', color: '#10b981' },
-      { name: 'PostgreSQL', category: 'tools', subLabel: 'Relational DB', color: '#3b82f6' },
-      { name: 'Git', category: 'tools', subLabel: 'Version Control', color: '#f43f5e' },
-      { name: 'GitHub', category: 'tools', subLabel: 'Collaboration', color: '#e2e8f0' },
-      { name: 'Figma', category: 'tools', subLabel: 'UI / UX Design', color: '#ec4899' },
-      { name: 'VS Code', category: 'tools', subLabel: 'IDE / Editor', color: '#38bdf8' },
+      { name: 'MySQL', category: 'tools', level: 'Relational Database', description: 'Relational database schema modeling, SQL queries, indexing, and data persistence.', color: '#0284c7' },
+      { name: 'Git', category: 'tools', level: 'Version Control', description: 'Branching strategies, commit history hygiene, and merge conflict resolution.', color: '#f43f5e' },
+      { name: 'GitHub', category: 'tools', level: 'Code Collaboration', description: 'Remote repository management, pull requests, and collaborative open-source workflows.', color: '#e2e8f0' },
     ] as SkillItem[],
 
-    strengths: [
-      { name: 'Problem Solving', category: 'strengths', subLabel: 'Analytical Thinking', color: '#a78bfa' },
-      { name: 'Team Collaboration', category: 'strengths', subLabel: 'Cross-Functional', color: '#38bdf8' },
-      { name: 'Time Management', category: 'strengths', subLabel: 'Milestone Execution', color: '#fbbf24' },
-      { name: 'Adaptability', category: 'strengths', subLabel: 'Continuous Learning', color: '#34d399' },
-      { name: 'Quick Learner', category: 'strengths', subLabel: 'Rapid Adoption', color: '#f472b6' },
+    soft: [
+      { name: 'Problem solving', category: 'soft', level: 'Analytical Thinking', description: 'Deconstructing complex engineering problems into clean, modular solutions.', color: '#ec4899' },
+      { name: 'Team collaboration', category: 'soft', level: 'Cross-Functional Synergy', description: 'Effective teamwork, active communication, and peer code reviews.', color: '#8b5cf6' },
+      { name: 'Time management', category: 'soft', level: 'Milestone Execution', description: 'Prioritizing sprint goals and delivering high-quality milestones on schedule.', color: '#3b82f6' },
+      { name: 'Adaptability', category: 'soft', level: 'Rapid Continuous Learning', description: 'Fast adoption of emerging frameworks, modern toolchains, and AI-assisted workflows.', color: '#10b981' },
     ] as SkillItem[],
   },
 
@@ -202,18 +195,44 @@ export const portfolioData = {
 
   certificates: [
     {
+      id: 'bootstrap-flexbox',
       title: 'Mastered frontend layout design using Bootstrap and Flexbox',
-      issuer: 'Nxtwave',
+      issuer: 'NxtWave',
       issueDate: 'Jan 2026',
       description: 'Certified mastery in structuring responsive frontend web layouts using Bootstrap grid systems and CSS Flexbox.',
       skillsCovered: ['Bootstrap', 'Flexbox', 'Responsive Design', 'CSS Layouts'],
+      imageUrl: '/assets/certificates/bootstrap-flexbox.png',
+      verificationUrl: 'https://certificates.ccbp.in/academy/build-your-own-responsive-website?id=RBHNNNCKOA',
     },
     {
-      title: 'Certified in Static Web Development',
-      issuer: 'Nxtwave',
+      id: 'static-web',
+      title: 'Certified in static Web Development',
+      issuer: 'NxtWave',
       issueDate: 'Jan 2026',
-      description: 'Certification in building standards-compliant static web pages using semantic HTML and CSS.',
-      skillsCovered: ['HTML', 'CSS', 'Semantic Markup', 'Web Standards'],
+      description: 'Certification in building standards-compliant static web pages using semantic HTML, CSS, and Bootstrap.',
+      skillsCovered: ['HTML', 'CSS', 'Bootstrap', 'Semantic Markup'],
+      imageUrl: '/assets/certificates/static-web.png',
+      verificationUrl: 'https://certificates.ccbp.in/academy/static-website?id=RRMIGZSTCN',
+    },
+    {
+      id: 'python-part1',
+      title: 'Completed course in programming fundamentals using Python part-1',
+      issuer: 'Infosys',
+      issueDate: 'Jun 2026',
+      description: 'Foundational certification covering Python core concepts, variables, control structures, and computational thinking.',
+      skillsCovered: ['Python', 'Control Structures', 'Functions', 'Programming Fundamentals'],
+      imageUrl: '/assets/certificates/python-part1.png',
+      verificationUrl: 'https://verify.onwingspan.com',
+    },
+    {
+      id: 'python-part2',
+      title: 'Completed course in programming fundamentals using Python part-2',
+      issuer: 'Infosys',
+      issueDate: 'Jun 2026',
+      description: 'Advanced fundamentals certification covering object-oriented concepts, data structures, and algorithmic logic in Python.',
+      skillsCovered: ['Python', 'Data Structures', 'OOP Concepts', 'Algorithmic Logic'],
+      imageUrl: '/assets/certificates/python-part2.png',
+      verificationUrl: 'https://verify.onwingspan.com',
     },
   ] as CertificateItem[],
 

@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
-import { Download, GraduationCap, Briefcase, Award, CheckCircle, FileText, Calendar, MapPin, Sparkles } from 'lucide-react';
-import { portfolioData } from '@/data/portfolioData';
+import React, { useState, useEffect } from 'react';
+import { Download, GraduationCap, Briefcase, Award, CheckCircle, FileText, Calendar, MapPin, Sparkles, ExternalLink, X, Eye } from 'lucide-react';
+import { portfolioData, CertificateItem } from '@/data/portfolioData';
 import { SectionHeader } from '@/components/SectionHeader';
 import { MagneticButton } from '@/components/MagneticButton';
 import { TiltCard } from '@/components/TiltCard';
 
 export const ResumeSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'all' | 'education' | 'training' | 'credentials'>('all');
+  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
 
   const { education, training, certificates, achievements, personal } = portfolioData;
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedCert(null);
+    };
+    if (selectedCert) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedCert]);
 
   return (
     <section
@@ -44,25 +61,13 @@ export const ResumeSection: React.FC = () => {
             <MagneticButton
               as="a"
               href={personal.resumeUrl}
-              download="Pavan_Bharath_Varma_CV.pdf"
-              target="_blank"
+              download="Pavan_Bharath_Varma_CV.docx"
               variant="primary"
               size="lg"
               icon={<Download size={18} />}
-              className="w-full sm:w-auto"
+              className="w-full md:w-auto"
             >
-              Download CV (PDF)
-            </MagneticButton>
-            <MagneticButton
-              as="a"
-              href={personal.resumeDocxUrl}
-              download="Pavan_Bharath_Varma_CV.docx"
-              variant="secondary"
-              size="lg"
-              icon={<FileText size={18} />}
-              className="w-full sm:w-auto"
-            >
-              Download (.docx)
+              Download Verified CV (.docx)
             </MagneticButton>
           </div>
         </div>
@@ -236,33 +241,122 @@ export const ResumeSection: React.FC = () => {
               ))}
 
               {/* Certifications List */}
-              {certificates.map((cert, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                >
-                  <div>
-                    <span className="text-sm font-bold text-white block">{cert.title}</span>
-                    <span className="text-xs text-slate-400 font-mono">
-                      {cert.issuer} • {cert.issueDate}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {cert.skillsCovered.map((s) => (
-                      <span
-                        key={s}
-                        className="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300"
-                      >
-                        {s}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {certificates.map((cert) => (
+                  <div
+                    key={cert.id}
+                    onClick={() => setSelectedCert(cert)}
+                    className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/90 hover:border-violet-500/50 hover:bg-slate-900 flex flex-col justify-between gap-3 cursor-pointer transition-all group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="px-2 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/40 text-[10px] font-mono font-bold text-violet-300">
+                          {cert.issuer}
+                        </span>
+                        <span className="text-[10px] font-mono text-cyan-400">
+                          {cert.issueDate}
+                        </span>
+                      </div>
+                      <span className="text-xs sm:text-sm font-bold text-white group-hover:text-violet-300 transition-colors block">
+                        {cert.title}
                       </span>
-                    ))}
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 pt-2 border-t border-slate-800/80">
+                      <span className="flex items-center gap-1 group-hover:text-cyan-400 transition-colors">
+                        <Eye size={12} /> View Certificate
+                      </span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setSelectedCert(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative w-full max-w-3xl rounded-3xl bg-slate-900 border border-violet-500/40 p-5 sm:p-7 shadow-2xl shadow-violet-950/80 max-h-[90vh] overflow-y-auto space-y-5"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-4 border-b border-slate-800 pb-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/40 text-xs font-mono font-bold text-violet-300">
+                    {selectedCert.issuer}
+                  </span>
+                  <span className="text-xs font-mono text-cyan-400">
+                    {selectedCert.issueDate}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-white font-heading">
+                  {selectedCert.title}
+                </h3>
+              </div>
+
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer flex-shrink-0"
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner flex items-center justify-center">
+              <img
+                src={selectedCert.imageUrl}
+                alt={selectedCert.title}
+                className="w-full h-auto max-h-[58vh] object-contain rounded-xl"
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+              <div className="flex flex-wrap gap-1.5 w-full sm:w-auto">
+                {selectedCert.skillsCovered.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 py-1 rounded-lg bg-slate-800 text-xs font-mono text-slate-300 border border-slate-700/50"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+                <a
+                  href={selectedCert.imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-all flex items-center gap-1.5"
+                >
+                  <Eye size={14} /> Full Image
+                </a>
+
+                {selectedCert.verificationUrl && (
+                  <a
+                    href={selectedCert.verificationUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs font-mono transition-all flex items-center gap-1.5 shadow-md shadow-violet-900/50"
+                  >
+                    <ExternalLink size={14} /> Verify Credential
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
