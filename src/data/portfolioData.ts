@@ -1,9 +1,10 @@
 export interface SkillItem {
   name: string;
-  category: 'languages' | 'technologies' | 'tools' | 'soft';
-  level: string;
-  description: string;
-  color: string;
+  category: 'languages' | 'technologies' | 'tools' | 'soft' | 'development' | 'strengths';
+  level?: string;
+  subLabel?: string;
+  description?: string;
+  color?: string;
 }
 
 export interface ProjectDetail {
@@ -85,29 +86,29 @@ export const portfolioData = {
 
   skills: {
     languages: [
-      { name: 'JavaScript', category: 'languages', level: 'ES6+ & Full-Stack Logic', description: 'Asynchronous event loop, modern ES6+ paradigms, DOM architecture, and REST API integration.', color: '#f59e0b' },
-      { name: 'C', category: 'languages', level: 'System Fundamentals', description: 'Pointers, memory management, and core computational structures.', color: '#64748b' },
-      { name: 'C++', category: 'languages', level: 'Algorithms & STL', description: 'Standard Template Library (STL), algorithmic optimization, and computational performance.', color: '#06b6d4' },
-      { name: 'Python', category: 'languages', level: 'Data & Scripting', description: 'Data structures, scripting, logic automation, and foundational data analytics.', color: '#38bdf8' },
+      { name: 'JavaScript', category: 'languages', level: 'ES6+ & Full-Stack Logic', subLabel: 'ES6+ & Web', description: 'Asynchronous event loop, modern ES6+ paradigms, DOM architecture, and REST API integration.', color: '#f59e0b' },
+      { name: 'C', category: 'languages', level: 'System Fundamentals', subLabel: 'Systems', description: 'Pointers, memory management, and core computational structures.', color: '#64748b' },
+      { name: 'C++', category: 'languages', level: 'Algorithms & STL', subLabel: 'Algorithms & STL', description: 'Standard Template Library (STL), algorithmic optimization, and computational performance.', color: '#06b6d4' },
+      { name: 'Python', category: 'languages', level: 'Data & Scripting', subLabel: 'Data & Scripting', description: 'Data structures, scripting, logic automation, and foundational data analytics.', color: '#38bdf8' },
     ] as SkillItem[],
 
     technologies: [
-      { name: 'HTML', category: 'technologies', level: 'Semantic Structure', description: 'Accessible markup, clean DOM hierarchy, and modern web standards.', color: '#f97316' },
-      { name: 'CSS', category: 'technologies', level: 'Responsive Styling & Layouts', description: 'Flexbox, CSS Grid, media queries, keyframe animations, and custom styling systems.', color: '#38bdf8' },
-      { name: 'Bootstrap', category: 'technologies', level: 'Responsive UI Prototyping', description: 'Responsive grid architecture, mobile-first navigation, and accessible components.', color: '#a855f7' },
+      { name: 'HTML', category: 'technologies', level: 'Semantic Structure', subLabel: 'Semantic DOM', description: 'Accessible markup, clean DOM hierarchy, and modern web standards.', color: '#f97316' },
+      { name: 'CSS', category: 'technologies', level: 'Responsive Styling & Layouts', subLabel: 'Flexbox & Grid', description: 'Flexbox, CSS Grid, media queries, keyframe animations, and custom styling systems.', color: '#38bdf8' },
+      { name: 'Bootstrap', category: 'technologies', level: 'Responsive UI Prototyping', subLabel: 'Responsive UI', description: 'Responsive grid architecture, mobile-first navigation, and accessible components.', color: '#a855f7' },
     ] as SkillItem[],
 
     tools: [
-      { name: 'MySQL', category: 'tools', level: 'Relational Database', description: 'Relational database schema modeling, SQL queries, indexing, and data persistence.', color: '#0284c7' },
-      { name: 'Git', category: 'tools', level: 'Version Control', description: 'Branching strategies, commit history hygiene, and merge conflict resolution.', color: '#f43f5e' },
-      { name: 'GitHub', category: 'tools', level: 'Code Collaboration', description: 'Remote repository management, pull requests, and collaborative open-source workflows.', color: '#e2e8f0' },
+      { name: 'MySQL', category: 'tools', level: 'Relational Database', subLabel: 'Relational SQL', description: 'Relational database schema modeling, SQL queries, indexing, and data persistence.', color: '#0284c7' },
+      { name: 'Git', category: 'tools', level: 'Version Control', subLabel: 'Version Control', description: 'Branching strategies, commit history hygiene, and merge conflict resolution.', color: '#f43f5e' },
+      { name: 'GitHub', category: 'tools', level: 'Code Collaboration', subLabel: 'Collaboration', description: 'Remote repository management, pull requests, and collaborative open-source workflows.', color: '#e2e8f0' },
     ] as SkillItem[],
 
     soft: [
-      { name: 'Problem solving', category: 'soft', level: 'Analytical Thinking', description: 'Deconstructing complex engineering problems into clean, modular solutions.', color: '#ec4899' },
-      { name: 'Team collaboration', category: 'soft', level: 'Cross-Functional Synergy', description: 'Effective teamwork, active communication, and peer code reviews.', color: '#8b5cf6' },
-      { name: 'Time management', category: 'soft', level: 'Milestone Execution', description: 'Prioritizing sprint goals and delivering high-quality milestones on schedule.', color: '#3b82f6' },
-      { name: 'Adaptability', category: 'soft', level: 'Rapid Continuous Learning', description: 'Fast adoption of emerging frameworks, modern toolchains, and AI-assisted workflows.', color: '#10b981' },
+      { name: 'Problem solving', category: 'soft', level: 'Analytical Thinking', subLabel: 'Analytical Thinking', description: 'Deconstructing complex engineering problems into clean, modular solutions.', color: '#ec4899' },
+      { name: 'Team collaboration', category: 'soft', level: 'Cross-Functional Synergy', subLabel: 'Team Synergy', description: 'Effective teamwork, active communication, and peer code reviews.', color: '#8b5cf6' },
+      { name: 'Time management', category: 'soft', level: 'Milestone Execution', subLabel: 'Milestone Execution', description: 'Prioritizing sprint goals and delivering high-quality milestones on schedule.', color: '#3b82f6' },
+      { name: 'Adaptability', category: 'soft', level: 'Rapid Continuous Learning', subLabel: 'Continuous Learning', description: 'Fast adoption of emerging frameworks, modern toolchains, and AI-assisted workflows.', color: '#10b981' },
     ] as SkillItem[],
   },
 

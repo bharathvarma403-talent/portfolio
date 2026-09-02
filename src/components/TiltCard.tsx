@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { cn } from '@/utils/cn';
 import { useDeviceQuality } from '@/hooks/useDeviceQuality';
 
-interface TiltCardProps {
+export interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   maxTilt?: number;
@@ -14,6 +14,8 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   className,
   maxTilt = 8,
   glowColor = 'rgba(139, 92, 246, 0.15)',
+  onClick,
+  ...props
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const { isTouch } = useDeviceQuality();
@@ -57,6 +59,8 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      {...props}
     >
       {/* Dynamic Light Glare */}
       {!isTouch && (
