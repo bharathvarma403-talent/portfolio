@@ -107,8 +107,8 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
     {
       number: '02',
       id: 'technologies',
-      title: 'TECHNOLOGIES',
-      description: 'Frontend markup, responsive styles, and layout frameworks.',
+      title: 'DEVELOPMENT',
+      description: 'Modern libraries, frameworks, and web technologies.',
       badgeStyle: 'text-cyan-300 bg-cyan-950/40 border-cyan-500/20',
       items: techItems,
     },
@@ -123,8 +123,8 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
     {
       number: '04',
       id: 'soft',
-      title: 'SOFT SKILLS',
-      description: 'Professional execution, critical thinking, and collaborative teamwork.',
+      title: 'CORE STRENGTHS',
+      description: 'Professional execution and collaborative engineering practices.',
       badgeStyle: 'text-pink-300 bg-pink-950/40 border-pink-500/20',
       items: softItems,
     },

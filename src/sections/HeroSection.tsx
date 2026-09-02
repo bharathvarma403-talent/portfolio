@@ -66,7 +66,7 @@ export const HeroSection: React.FC = () => {
             <MagneticButton
               as="a"
               href={personal.resumeUrl}
-              download="Pavan_Bharath_Varma_CV.pdf"
+              download="Pavan_Bharath_Varma_CV.jpg"
               target="_blank"
               variant="secondary"
               size="lg"

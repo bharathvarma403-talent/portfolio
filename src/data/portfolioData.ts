@@ -81,7 +81,7 @@ export const portfolioData = {
       email: 'mailto:bharathvarma403@gmail.com',
     },
     profilePhoto: '/assets/profile.jpg',
-    resumeUrl: '/assets/Pavan_Bharath_Varma_CV.docx',
+    resumeUrl: '/assets/Pavan_Bharath_Varma_CV.jpg',
   },
 
   skills: {

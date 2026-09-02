@@ -61,7 +61,7 @@ export const ResumeSection: React.FC = () => {
             <MagneticButton
               as="a"
               href={personal.resumeUrl}
-              download="Pavan_Bharath_Varma_CV.docx"
+              download="Pavan_Bharath_Varma_CV.jpg"
               variant="primary"
               size="lg"
               icon={<Download size={18} />}

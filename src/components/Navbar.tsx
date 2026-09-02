@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           <MagneticButton
             as="a"
             href={portfolioData.personal.resumeUrl}
-            download="Pavan_Bharath_Varma_CV.pdf"
+            download="Pavan_Bharath_Varma_CV.jpg"
             target="_blank"
             variant="outline"
             size="sm"
@@ -147,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             <div className="pt-4 flex flex-col gap-2.5">
               <a
                 href={portfolioData.personal.resumeUrl}
-                download="Pavan_Bharath_Varma_CV.pdf"
+                download="Pavan_Bharath_Varma_CV.jpg"
                 target="_blank"
                 className="w-full text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm font-medium text-slate-200"
               >
