@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Sparkles, CheckCircle2, ChevronRight, Layers, CheckCircle } from 'lucide-react';
+import { Sparkles, CheckCircle, ExternalLink, Globe } from 'lucide-react';
 import { GithubIcon } from '@/components/SocialIcons';
-import { portfolioData } from '@/data/portfolioData';
+import { portfolioData, ProjectDetail } from '@/data/portfolioData';
 import { SectionHeader } from '@/components/SectionHeader';
 import { TiltCard } from '@/components/TiltCard';
 import { MagneticButton } from '@/components/MagneticButton';
 
 export const ProjectsSection: React.FC = () => {
+  const { projects } = portfolioData;
+  const [activeProjectId, setActiveProjectId] = useState<string>(projects[0]?.id || 'vasavi-traders');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const project = portfolioData.projects[0];
 
-  if (!project) return null;
+  const currentProject = projects.find((p) => p.id === activeProjectId) || projects[0];
+
+  if (!currentProject) return null;
 
   return (
     <section
@@ -19,10 +22,34 @@ export const ProjectsSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto w-full">
         <SectionHeader
-          badge="Featured Engineering Project"
-          title="Vasavi Traders"
-          subtitle="Full-stack commercial construction material platform engineered with material reservations, order tracking, and dynamic admin management."
+          badge="Featured Engineering Projects"
+          title="Production Platforms"
+          subtitle="Full-stack web systems engineered with modern architectures, user authentication, responsive design, and live deployments."
         />
+
+        {/* Project Selector Tabs */}
+        {projects.length > 1 && (
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex p-1.5 rounded-full bg-slate-900/90 border border-slate-800 backdrop-blur-md">
+              {projects.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => {
+                    setActiveProjectId(p.id);
+                    setActiveImageIndex(0);
+                  }}
+                  className={`px-5 py-2 rounded-full text-xs font-mono transition-all cursor-pointer ${
+                    activeProjectId === p.id
+                      ? 'bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-bold shadow-lg shadow-violet-950/50'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {p.title}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Main Project Hero Card */}
         <div className="rounded-3xl bg-slate-950/80 border border-violet-500/30 p-6 sm:p-8 md:p-10 backdrop-blur-2xl shadow-2xl shadow-violet-950/40 mb-12">
@@ -31,20 +58,20 @@ export const ProjectsSection: React.FC = () => {
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
                 <Sparkles size={14} />
-                <span>{project.duration}</span>
+                <span>{currentProject.duration}</span>
               </div>
 
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-white font-heading">
-                {project.title}
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading leading-tight">
+                {currentProject.title}
               </h3>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                {project.description}
+                {currentProject.description}
               </p>
 
               {/* Exact Bullets from CV */}
               <div className="space-y-2.5 pt-2">
-                {project.bullets.map((bullet, idx) => (
+                {currentProject.bullets.map((bullet, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <CheckCircle size={16} className="text-cyan-400 mt-1 flex-shrink-0" />
                     <span className="text-xs sm:text-sm text-slate-300">{bullet}</span>
@@ -58,7 +85,7 @@ export const ProjectsSection: React.FC = () => {
                   Tech Stack (From CV):
                 </span>
                 <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
+                  {currentProject.techStack.map((tech) => (
                     <span
                       key={tech}
                       className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 font-medium shadow-sm"
@@ -71,12 +98,26 @@ export const ProjectsSection: React.FC = () => {
 
               {/* CTAs */}
               <div className="pt-4 flex flex-wrap items-center gap-3">
+                {currentProject.liveUrl && (
+                  <MagneticButton
+                    as="a"
+                    href={currentProject.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    variant="primary"
+                    size="md"
+                    icon={<ExternalLink size={16} />}
+                  >
+                    Live Website
+                  </MagneticButton>
+                )}
+
                 <MagneticButton
                   as="a"
-                  href={project.githubUrl}
+                  href={currentProject.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  variant="primary"
+                  variant="outline"
                   size="md"
                   icon={<GithubIcon size={16} />}
                 >
@@ -93,8 +134,8 @@ export const ProjectsSection: React.FC = () => {
               >
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-slate-950">
                   <img
-                    src={project.images[activeImageIndex] || project.heroImage}
-                    alt={project.title}
+                    src={currentProject.images[activeImageIndex] || currentProject.heroImage}
+                    alt={currentProject.title}
                     className="w-full h-full object-cover transition-all duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
@@ -102,26 +143,28 @@ export const ProjectsSection: React.FC = () => {
               </TiltCard>
 
               {/* Thumbnail Selector */}
-              <div className="grid grid-cols-5 gap-2">
-                {project.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImageIndex(idx)}
-                    className={`aspect-[16/10] rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                      activeImageIndex === idx ? 'border-cyan-400 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
+              {currentProject.images.length > 1 && (
+                <div className="grid grid-cols-5 gap-2">
+                  {currentProject.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImageIndex(idx)}
+                      className={`aspect-[16/10] rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                        activeImageIndex === idx ? 'border-cyan-400 scale-105' : 'border-slate-800 opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {project.features.map((feat, idx) => (
+          {currentProject.features.map((feat, idx) => (
             <TiltCard
               key={idx}
               maxTilt={6}

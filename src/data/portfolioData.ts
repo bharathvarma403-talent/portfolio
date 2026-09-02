@@ -86,6 +86,7 @@ export const portfolioData = {
 
   skills: {
     languages: [
+      { name: 'Java', category: 'languages', level: 'OOP & Core Logic', subLabel: 'OOP & Core Logic', description: 'Object-oriented programming, class design, inheritance, and core computational structures.', color: '#ef4444' },
       { name: 'JavaScript', category: 'languages', level: 'ES6+ & Full-Stack Logic', subLabel: 'ES6+ & Web', description: 'Asynchronous event loop, modern ES6+ paradigms, DOM architecture, and REST API integration.', color: '#f59e0b' },
       { name: 'C', category: 'languages', level: 'System Fundamentals', subLabel: 'Systems', description: 'Pointers, memory management, and core computational structures.', color: '#64748b' },
       { name: 'C++', category: 'languages', level: 'Algorithms & STL', subLabel: 'Algorithms & STL', description: 'Standard Template Library (STL), algorithmic optimization, and computational performance.', color: '#06b6d4' },
@@ -97,6 +98,7 @@ export const portfolioData = {
       { name: 'CSS', category: 'technologies', level: 'Responsive Styling & Layouts', subLabel: 'Flexbox & Grid', description: 'Flexbox, CSS Grid, media queries, keyframe animations, and custom styling systems.', color: '#38bdf8' },
       { name: 'Bootstrap', category: 'technologies', level: 'Responsive UI Prototyping', subLabel: 'Responsive UI', description: 'Responsive grid architecture, mobile-first navigation, and accessible components.', color: '#a855f7' },
     ] as SkillItem[],
+
     development: [
       { name: 'HTML', category: 'technologies', level: 'Semantic Structure', subLabel: 'Semantic DOM', description: 'Accessible markup, clean DOM hierarchy, and modern web standards.', color: '#f97316' },
       { name: 'CSS', category: 'technologies', level: 'Responsive Styling & Layouts', subLabel: 'Flexbox & Grid', description: 'Flexbox, CSS Grid, media queries, keyframe animations, and custom styling systems.', color: '#38bdf8' },
@@ -115,6 +117,7 @@ export const portfolioData = {
       { name: 'Time management', category: 'soft', level: 'Milestone Execution', subLabel: 'Milestone Execution', description: 'Prioritizing sprint goals and delivering high-quality milestones on schedule.', color: '#3b82f6' },
       { name: 'Adaptability', category: 'soft', level: 'Rapid Continuous Learning', subLabel: 'Continuous Learning', description: 'Fast adoption of emerging frameworks, modern toolchains, and AI-assisted workflows.', color: '#10b981' },
     ] as SkillItem[],
+
     strengths: [
       { name: 'Problem solving', category: 'soft', level: 'Analytical Thinking', subLabel: 'Analytical Thinking', description: 'Deconstructing complex engineering problems into clean, modular solutions.', color: '#ec4899' },
       { name: 'Team collaboration', category: 'soft', level: 'Cross-Functional Synergy', subLabel: 'Team Synergy', description: 'Effective teamwork, active communication, and peer code reviews.', color: '#8b5cf6' },
@@ -127,11 +130,12 @@ export const portfolioData = {
     {
       id: 'vasavi-traders',
       title: 'Vasavi Traders',
-      tagline: 'Responsive Construction Materials Commerce & Material Reservation Engine',
+      tagline: 'Responsive Construction Materials Platform & Material Reservation Engine',
       duration: 'Mar 2026 – Apr 2026',
       description: 'A responsive construction materials website engineered for product browsing and material reservations, featuring dynamic categories, customer reservation management, and a dedicated admin cockpit.',
       role: 'Full-Stack Developer',
       githubUrl: 'https://github.com/bharathvarma403-talent',
+      liveUrl: 'https://vasavitraders.store',
       heroImage: '/assets/vasavi/cement_bags.png',
       images: [
         '/assets/vasavi/cement_bags.png',
@@ -178,6 +182,57 @@ export const portfolioData = {
         },
       ],
     },
+    {
+      id: 'virtual-card',
+      title: 'VIRTUAL — Digital Visiting Card Platform',
+      tagline: 'Smart Professional Networking with QR, NFC, OCR & Instant Contact Sharing',
+      duration: 'Aug 2026 – Present',
+      description: 'Built a smart digital visiting card system for seamless professional networking with QR code generation, NFC profile sharing, OCR business card scanning, and privacy-first contact management.',
+      role: 'Full-Stack Lead',
+      githubUrl: 'https://github.com/bharathvarma403-talent/Virtual-Card',
+      liveUrl: 'https://virtual-card-eight.vercel.app/',
+      heroImage: '/assets/vasavi/electrical_materials.png',
+      images: [
+        '/assets/vasavi/electrical_materials.png',
+        '/assets/vasavi/pipes_fittings.png',
+        '/assets/vasavi/paint_primers.png',
+      ],
+      techStack: [
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Supabase',
+        'Three.js',
+        'QR & NFC',
+      ],
+      bullets: [
+        'Built a smart digital visiting card system for seamless professional networking.',
+        'Integrated QR, NFC, OCR, vCard export, and privacy-first contact management.',
+        'Designed a modern, responsive interface focused on simplicity and user experience.',
+      ],
+      features: [
+        {
+          title: 'Instant QR & NFC Sharing',
+          description: 'Share contact information instantly with tap-to-connect NFC and dynamic QR codes.',
+          icon: 'QrCode',
+        },
+        {
+          title: 'OCR Business Card Scanner',
+          description: 'Extract contact details directly from paper cards using optical character recognition.',
+          icon: 'Scan',
+        },
+        {
+          title: 'vCard & Contact Sync',
+          description: '1-click export of structured contact data straight to Apple Contacts & Google Contacts.',
+          icon: 'UserCheck',
+        },
+        {
+          title: 'Privacy-First Architecture',
+          description: 'Supabase row-level security ensuring users maintain complete control of their profile data.',
+          icon: 'ShieldCheck',
+        },
+      ],
+    },
   ] as ProjectDetail[],
 
   training: [
@@ -188,7 +243,7 @@ export const portfolioData = {
       description: 'Undergraduate engineering program concentrating on Artificial Intelligence, Machine Learning algorithms, computational structures, and software principles.',
       bullets: [
         'Specialization in Artificial Intelligence & Machine Learning',
-        'Rigorous coursework in computational algorithms, data structures, and software principles',
+        'Coursework in computational algorithms, data structures, and software principles',
       ],
       technologies: ['AI / ML', 'Data Structures', 'Algorithms', 'Python', 'C++'],
     },
@@ -250,10 +305,10 @@ export const portfolioData = {
 
   achievements: [
     {
-      title: 'Full-Stack Website Deployment (Vasavi Traders)',
-      description: 'Built and deployed a full-stack construction material website, Vasavi Traders, using AI-assisted development.',
-      date: 'Apr 2026',
-      tags: ['Vasavi Traders', 'Full-Stack', 'AI-Assisted Development', 'React.js', 'Node.js', 'Supabase'],
+      title: 'Completed 100+ problems of Python and PostgreSQL in Codetantra platform.',
+      description: 'Mastered core algorithmic problem solving, query optimization, and data structure implementations across Python and PostgreSQL on Codetantra.',
+      date: 'Aug 2025 – May 2026',
+      tags: ['Codetantra', 'Python', 'PostgreSQL', 'Problem Solving', 'Data Structures'],
     },
   ] as AchievementItem[],
 
@@ -273,16 +328,16 @@ export const portfolioData = {
       location: 'Guntur, Andhra Pradesh',
       duration: 'May 2023 – Mar 2025',
       score: 'Percentage: 97.8%',
-      description: 'Excellence in Mathematics, Physics, and Chemistry.',
+      description: 'Higher Secondary Education with distinction.',
       status: 'completed',
     },
     {
       degree: 'Secondary Education',
       institution: 'Royal School',
-      location: 'Mandur, Andhra Pradesh',
+      location: 'Martur, Andhra Pradesh',
       duration: 'Jun 2022 – Mar 2023',
       score: 'Percentage: 93.3%',
-      description: 'Strong foundational academic record.',
+      description: 'Secondary Education with distinction.',
       status: 'completed',
     },
   ] as EducationItem[],

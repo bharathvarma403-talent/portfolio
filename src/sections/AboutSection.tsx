@@ -65,7 +65,7 @@ export const AboutSection: React.FC = () => {
               </p>
 
               <p className="text-sm text-slate-400 leading-relaxed">
-                Currently advancing through rigorous full-stack training at <strong className="text-slate-200">NxtWave Academy</strong>, mastering modern frontend paradigms, backend REST APIs, database orchestration, and cloud deployments on Vercel, Render, and Supabase.
+                Currently advancing through hands-on full-stack development training at <strong className="text-slate-200">NxtWave Academy</strong>, building production systems and deploying cloud applications across Vercel, Render, and Supabase.
               </p>
             </div>
 
@@ -77,11 +77,11 @@ export const AboutSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
                 <CheckCircle2 size={16} className="text-cyan-400 flex-shrink-0" />
-                <span>Production App: Vasavi Traders</span>
+                <span>Production Projects: Vasavi & VIRTUAL</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
                 <CheckCircle2 size={16} className="text-violet-400 flex-shrink-0" />
-                <span>Modern React & Node.js Stack</span>
+                <span>100+ Problems Solved (Codetantra)</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
                 <CheckCircle2 size={16} className="text-pink-400 flex-shrink-0" />

@@ -21,6 +21,7 @@ import {
   Clock,
   Compass,
   Zap,
+  Coffee,
 } from 'lucide-react';
 import { GithubIcon } from '@/components/SocialIcons';
 import { portfolioData, SkillItem } from '@/data/portfolioData';
@@ -37,16 +38,18 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
 }) => {
   switch (name.toLowerCase()) {
     // 01 — Programming Languages
-    case 'python':
-      return <Terminal size={size} className={`text-cyan-400 ${className}`} />;
+    case 'java':
+      return <Coffee size={size} className={`text-red-400 ${className}`} />;
     case 'javascript':
       return <FileCode size={size} className={`text-amber-400 ${className}`} />;
     case 'c':
       return <Cpu size={size} className={`text-slate-400 ${className}`} />;
     case 'c++':
       return <Layers size={size} className={`text-sky-400 ${className}`} />;
+    case 'python':
+      return <Terminal size={size} className={`text-cyan-400 ${className}`} />;
 
-    // 02 — Technologies & Development
+    // 02 — Technologies
     case 'html':
     case 'html5':
       return <Globe size={size} className={`text-orange-400 ${className}`} />;
@@ -55,13 +58,6 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
       return <Palette size={size} className={`text-blue-400 ${className}`} />;
     case 'bootstrap':
       return <LayoutGrid size={size} className={`text-purple-400 ${className}`} />;
-    case 'react':
-    case 'react.js':
-      return <Atom size={size} className={`text-cyan-400 ${className}`} />;
-    case 'node.js':
-      return <Server size={size} className={`text-emerald-400 ${className}`} />;
-    case 'tailwind css':
-      return <Wind size={size} className={`text-teal-400 ${className}`} />;
 
     // 03 — Databases & Tools
     case 'mysql':
@@ -70,16 +66,8 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
       return <GitBranch size={size} className={`text-rose-400 ${className}`} />;
     case 'github':
       return <GithubIcon size={size} className={`text-slate-300 ${className}`} />;
-    case 'mongodb':
-      return <Leaf size={size} className={`text-emerald-400 ${className}`} />;
-    case 'postgresql':
-      return <HardDrive size={size} className={`text-indigo-400 ${className}`} />;
-    case 'figma':
-      return <PenTool size={size} className={`text-pink-400 ${className}`} />;
-    case 'vs code':
-      return <Code size={size} className={`text-blue-400 ${className}`} />;
 
-    // 04 — Soft Skills & Strengths
+    // 04 — Soft Skills
     case 'problem solving':
       return <Lightbulb size={size} className={`text-violet-400 ${className}`} />;
     case 'team collaboration':
@@ -88,8 +76,6 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
       return <Clock size={size} className={`text-amber-400 ${className}`} />;
     case 'adaptability':
       return <Compass size={size} className={`text-emerald-400 ${className}`} />;
-    case 'quick learner':
-      return <Zap size={size} className={`text-pink-400 ${className}`} />;
 
     default:
       return <Code size={size} className={`text-violet-400 ${className}`} />;
@@ -121,8 +107,8 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
     {
       number: '02',
       id: 'technologies',
-      title: 'TECHNOLOGIES & FRAMEWORKS',
-      description: 'Responsive frontend markup, modern styles, and layout frameworks.',
+      title: 'TECHNOLOGIES',
+      description: 'Frontend markup, responsive styles, and layout frameworks.',
       badgeStyle: 'text-cyan-300 bg-cyan-950/40 border-cyan-500/20',
       items: techItems,
     },
@@ -130,14 +116,14 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
       number: '03',
       id: 'tools',
       title: 'DATABASES & TOOLS',
-      description: 'Data persistence, developer tooling, and workflow environments.',
+      description: 'Data persistence, developer tooling, and version control.',
       badgeStyle: 'text-emerald-300 bg-emerald-950/40 border-emerald-500/20',
       items: skills.tools || [],
     },
     {
       number: '04',
       id: 'soft',
-      title: 'SOFT SKILLS & STRENGTHS',
+      title: 'SOFT SKILLS',
       description: 'Professional execution, critical thinking, and collaborative teamwork.',
       badgeStyle: 'text-pink-300 bg-pink-950/40 border-pink-500/20',
       items: softItems,
@@ -162,7 +148,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
             Technical Toolkit
           </h2>
           <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed">
-            Verified technologies, tools, and competencies from official curriculum.
+            Verified technologies, tools, and competencies from official CV records.
           </p>
         </div>
 
@@ -188,7 +174,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
                 {category.items.map((skill: SkillItem) => {
                   const isSelected = selectedSkill?.name === skill.name;
                   return (

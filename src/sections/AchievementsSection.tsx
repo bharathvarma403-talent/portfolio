@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Trophy, Code2, Sparkles, CheckCircle2 } from 'lucide-react';
 import { portfolioData } from '@/data/portfolioData';
 import { SectionHeader } from '@/components/SectionHeader';
 import { TiltCard } from '@/components/TiltCard';
@@ -16,7 +16,7 @@ export const AchievementsSection: React.FC = () => {
         <SectionHeader
           badge="Milestones & Impact"
           title="Key Achievements"
-          subtitle="Proven track record in deploying full-stack platforms and executing complex software milestones."
+          subtitle="Verified computational milestones and algorithmic problem-solving on competitive coding platforms."
         />
 
         <div className="max-w-3xl mx-auto">
@@ -33,10 +33,15 @@ export const AchievementsSection: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block">
-                    Verified CV Achievement
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-heading">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono uppercase tracking-widest text-amber-400 block">
+                      Verified CV Achievement
+                    </span>
+                    <span className="text-xs font-mono text-cyan-400 px-2 py-0.5 rounded-full bg-cyan-950/50 border border-cyan-500/30">
+                      {ach.date}
+                    </span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white font-heading mt-1">
                     {ach.title}
                   </h3>
                 </div>
