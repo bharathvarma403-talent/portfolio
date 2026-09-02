@@ -30,7 +30,6 @@ interface SkillsSectionProps {
   selectedSkill?: SkillItem | null;
 }
 
-// Crisp, dedicated icons for all 22 skills
 const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> = ({
   name,
   size = 16,
@@ -47,37 +46,40 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
     case 'c++':
       return <Layers size={size} className={`text-sky-400 ${className}`} />;
 
-    // 02 — Development
-    case 'react':
-      return <Atom size={size} className={`text-cyan-400 ${className}`} />;
-    case 'node.js':
-      return <Server size={size} className={`text-emerald-400 ${className}`} />;
+    // 02 — Technologies & Development
+    case 'html':
     case 'html5':
       return <Globe size={size} className={`text-orange-400 ${className}`} />;
+    case 'css':
     case 'css3':
       return <Palette size={size} className={`text-blue-400 ${className}`} />;
     case 'bootstrap':
       return <LayoutGrid size={size} className={`text-purple-400 ${className}`} />;
+    case 'react':
+    case 'react.js':
+      return <Atom size={size} className={`text-cyan-400 ${className}`} />;
+    case 'node.js':
+      return <Server size={size} className={`text-emerald-400 ${className}`} />;
     case 'tailwind css':
       return <Wind size={size} className={`text-teal-400 ${className}`} />;
 
     // 03 — Databases & Tools
     case 'mysql':
       return <Database size={size} className={`text-sky-400 ${className}`} />;
-    case 'mongodb':
-      return <Leaf size={size} className={`text-emerald-400 ${className}`} />;
-    case 'postgresql':
-      return <HardDrive size={size} className={`text-indigo-400 ${className}`} />;
     case 'git':
       return <GitBranch size={size} className={`text-rose-400 ${className}`} />;
     case 'github':
       return <GithubIcon size={size} className={`text-slate-300 ${className}`} />;
+    case 'mongodb':
+      return <Leaf size={size} className={`text-emerald-400 ${className}`} />;
+    case 'postgresql':
+      return <HardDrive size={size} className={`text-indigo-400 ${className}`} />;
     case 'figma':
       return <PenTool size={size} className={`text-pink-400 ${className}`} />;
     case 'vs code':
       return <Code size={size} className={`text-blue-400 ${className}`} />;
 
-    // 04 — Core Strengths
+    // 04 — Soft Skills & Strengths
     case 'problem solving':
       return <Lightbulb size={size} className={`text-violet-400 ${className}`} />;
     case 'team collaboration':
@@ -97,6 +99,9 @@ const SkillIcon: React.FC<{ name: string; size?: number; className?: string }> =
 export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, selectedSkill }) => {
   const { skills } = portfolioData;
 
+  const techItems = (skills as any).technologies || (skills as any).development || [];
+  const softItems = (skills as any).soft || (skills as any).strengths || [];
+
   const categories: {
     number: string;
     id: string;
@@ -111,15 +116,15 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
       title: 'PROGRAMMING LANGUAGES',
       description: 'Core languages for software and AI development.',
       badgeStyle: 'text-violet-300 bg-violet-950/40 border-violet-500/20',
-      items: skills.languages,
+      items: skills.languages || [],
     },
     {
       number: '02',
-      id: 'development',
-      title: 'DEVELOPMENT',
-      description: 'Modern libraries, frameworks, and web technologies.',
+      id: 'technologies',
+      title: 'TECHNOLOGIES & FRAMEWORKS',
+      description: 'Responsive frontend markup, modern styles, and layout frameworks.',
       badgeStyle: 'text-cyan-300 bg-cyan-950/40 border-cyan-500/20',
-      items: (skills as any).development || [],
+      items: techItems,
     },
     {
       number: '03',
@@ -127,15 +132,15 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
       title: 'DATABASES & TOOLS',
       description: 'Data persistence, developer tooling, and workflow environments.',
       badgeStyle: 'text-emerald-300 bg-emerald-950/40 border-emerald-500/20',
-      items: skills.tools,
+      items: skills.tools || [],
     },
     {
       number: '04',
-      id: 'strengths',
-      title: 'CORE STRENGTHS',
-      description: 'Professional execution and collaborative engineering practices.',
+      id: 'soft',
+      title: 'SOFT SKILLS & STRENGTHS',
+      description: 'Professional execution, critical thinking, and collaborative teamwork.',
       badgeStyle: 'text-pink-300 bg-pink-950/40 border-pink-500/20',
-      items: (skills as any).strengths || [],
+      items: softItems,
     },
   ];
 
@@ -154,14 +159,14 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3 font-heading">
-            Skills
+            Technical Toolkit
           </h2>
           <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed">
-            Tools and technologies I use to turn ideas into working systems.
+            Verified technologies, tools, and competencies from official curriculum.
           </p>
         </div>
 
-        {/* 4 Categorized Skill Groups with Strong Whitespace */}
+        {/* 4 Categorized Skill Groups */}
         <div className="space-y-12 sm:space-y-16">
           {categories.map((category) => (
             <div key={category.id} className="space-y-4">
@@ -182,11 +187,10 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
                 </p>
               </div>
 
-              {/* Compact Skill Tiles Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
+              {/* Skills Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {category.items.map((skill: SkillItem) => {
                   const isSelected = selectedSkill?.name === skill.name;
-
                   return (
                     <div
                       key={skill.name}
@@ -208,9 +212,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onSkillSelect, sel
                           <h4 className="text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-white tracking-tight truncate">
                             {skill.name}
                           </h4>
-                          {skill.subLabel && (
+                          {(skill.subLabel || skill.level) && (
                             <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 group-hover:text-slate-300 block truncate">
-                              {skill.subLabel}
+                              {skill.subLabel || skill.level}
                             </span>
                           )}
                         </div>
